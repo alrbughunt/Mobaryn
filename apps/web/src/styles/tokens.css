@@ -1,0 +1,23 @@
+/* =============================================================
+   Mobaryn Design Tokens — Tailwind CSS v4 (@theme directive)
+   ============================================================= */
+
+@theme {
+  /* --- Colors --- */
+  --color-primary: #0B5ED7;
+  --color-navy:    #0F172A;
+  --color-white:   #FFFFFF;
+  --color-surface: #F5F8FC;
+
+  /* --- Typography --- */
+  --font-sans: 'Switzer', -apple-system, 'Segoe UI', sans-serif;
+
+  /* --- Layout --- */
+  --container-max: 1200px;
+  --text-max:      680px;
+
+  /* --- Border radius --- */
+  --radius-btn:   6px;
+  --radius-card:  8px;
+  --radius-hero:  4px;
+}

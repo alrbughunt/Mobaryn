@@ -1,0 +1,12 @@
+# config.toml — Supabase local dev configuration
+# TODO: Fill in project_id and other settings
+# Reference: https://supabase.com/docs/guides/cli/config
+
+[api]
+# TODO: configure API settings
+
+[db]
+# TODO: configure database settings
+
+[studio]
+# TODO: configure Supabase Studio settings

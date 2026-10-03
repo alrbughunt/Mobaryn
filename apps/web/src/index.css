@@ -1,0 +1,19 @@
+/* Switzer font — Fontshare */
+@import url('https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap');
+
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+/* Base reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

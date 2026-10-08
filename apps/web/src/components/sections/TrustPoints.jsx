@@ -1,44 +1,58 @@
-import { MapPin, MessageCircle, ClipboardCheck, Wrench } from "lucide-react"
 import Container from "../layout/Container"
 
-const POINTS = [
-  {
-    icon: MapPin,
-    label: "Datang ke lokasi Anda",
-    desc: "Mekanik hadir langsung di tempat Anda parkir atau tinggal.",
-  },
-  {
-    icon: MessageCircle,
-    label: "Komunikasi via WhatsApp",
-    desc: "Pesan, konfirmasi, dan update pekerjaan langsung lewat chat.",
-  },
-  {
-    icon: ClipboardCheck,
-    label: "Transparan sebelum pengerjaan",
-    desc: "Diagnosa dan estimasi disampaikan sebelum servis dimulai.",
-  },
-  {
-    icon: Wrench,
-    label: "Tanpa antar-jemput kendaraan",
-    desc: "Hemat waktu — tidak perlu meninggalkan mobil di bengkel.",
-  },
+const METRICS = [
+  { value: "10+",       label: "Layanan Mobil",      sub: "Tune up, oli, AC, dan lebih" },
+  { value: "Cikarang",  label: "Area Operasional",   sub: "Seluruh kawasan Cikarang" },
+  { value: "Teknisi",   label: "Profesional",        sub: "Terlatih dan berpengalaman" },
+  { value: "Respon",    label: "Cepat",               sub: "Konfirmasi via WhatsApp" },
 ]
 
-export default function TrustPoints() {
+export default function TrustMetrics() {
   return (
-    <section className="py-12 border-b border-navy/8">
+    <section
+      className="border-y"
+      style={{ borderColor: "rgba(7,26,61,0.08)" }}
+    >
       <Container>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none m-0 p-0">
-          {POINTS.map(({ icon: Icon, label, desc }) => (
-            <li key={label} className="flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-primary">
-                <Icon size={20} aria-hidden="true" />
-                <span className="text-sm font-semibold text-navy">{label}</span>
-              </div>
-              <p className="text-sm text-navy/60 leading-relaxed">{desc}</p>
-            </li>
+        <div className="grid grid-cols-2 lg:grid-cols-4">
+          {METRICS.map(({ value, label, sub }, i) => (
+            <div
+              key={value}
+              className={`flex flex-col gap-1 py-10 px-6 lg:px-8 ${
+                i < METRICS.length - 1 ? "border-r" : ""
+              }`}
+              style={{ borderColor: "rgba(7,26,61,0.08)" }}
+            >
+              {/* Large value */}
+              <span
+                className="font-extrabold leading-none"
+                style={{
+                  fontSize: "clamp(28px, 3.5vw, 42px)",
+                  color: "#071A3D",
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                {value}
+              </span>
+
+              {/* Label */}
+              <span
+                className="text-[15px] font-semibold"
+                style={{ color: "#071A3D" }}
+              >
+                {label}
+              </span>
+
+              {/* Sub */}
+              <span
+                className="text-[13px] leading-snug"
+                style={{ color: "#334155", opacity: 0.6 }}
+              >
+                {sub}
+              </span>
+            </div>
           ))}
-        </ul>
+        </div>
       </Container>
     </section>
   )

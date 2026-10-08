@@ -1,56 +1,100 @@
-import { MapPin, MessageSquare, ClipboardList, ShieldCheck } from "lucide-react"
 import Container from "../layout/Container"
 
-const REASONS = [
+const PILLARS = [
   {
-    icon: MapPin,
-    title: "Servis di lokasi Anda",
-    desc: "Tidak perlu meninggalkan kendaraan di bengkel. Kami yang datang ke tempat Anda.",
+    title: "Teknisi Profesional",
+    desc: "Terlatih, berpengalaman, dan paham karakteristik berbagai merek kendaraan.",
   },
   {
-    icon: MessageSquare,
-    title: "Komunikasi langsung dengan admin",
-    desc: "Setiap pertanyaan dijawab langsung oleh tim kami — tidak ada perantara bot.",
+    title: "Harga Transparan",
+    desc: "Estimasi disampaikan sebelum pengerjaan dimulai. Tidak ada biaya tersembunyi.",
   },
   {
-    icon: ClipboardList,
-    title: "Transparan sebelum pengerjaan",
-    desc: "Estimasi biaya dan deskripsi pekerjaan disampaikan terlebih dahulu untuk persetujuan Anda.",
+    title: "Datang ke Lokasi",
+    desc: "Kami yang bergerak. Anda tidak perlu meninggalkan tempat kerja atau rumah.",
   },
   {
-    icon: ShieldCheck,
-    title: "Proses yang bisa Anda pantau",
-    desc: "Anda dapat melihat langsung proses servis karena dikerjakan di hadapan Anda.",
+    title: "Peralatan Lengkap",
+    desc: "Setiap kunjungan dilengkapi dengan tools profesional siap digunakan.",
   },
 ]
 
 export default function WhyMobaryn() {
   return (
-    <section className="py-16 sm:py-20 bg-surface border-b border-navy/8">
+    <section
+      style={{ paddingTop: "96px", paddingBottom: "96px", background: "#F5F7FA" }}
+    >
       <Container>
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-2">
-            <h2 className="text-[26px] sm:text-[34px] font-semibold text-navy leading-tight">
-              Kenapa Mobaryn?
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+
+          {/* Left: Statement */}
+          <div className="flex-1 lg:max-w-[480px] flex flex-col gap-6 lg:sticky lg:top-[96px]">
+            <p
+              className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+              style={{ color: "#0066FF" }}
+            >
+              Kenapa Mobaryn
+            </p>
+            <h2
+              className="font-extrabold leading-tight"
+              style={{
+                fontSize: "clamp(30px, 4.5vw, 56px)",
+                color: "#071A3D",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.08,
+              }}
+            >
+              Dirancang Untuk Pengguna Yang Tidak Memiliki Waktu Datang Ke Bengkel.
             </h2>
-            <p className="text-base text-navy/60">
-              Model layanan kami dirancang agar servis mobil lebih mudah dan tidak menyita waktu Anda.
+
+            <p
+              className="text-[16px] leading-relaxed"
+              style={{ color: "#334155", opacity: 0.75 }}
+            >
+              Model layanan kami menempatkan kenyamanan Anda sebagai prioritas utama —
+              bukan sekadar servis, tapi pengalaman yang efisien dan modern.
             </p>
           </div>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 list-none m-0 p-0">
-            {REASONS.map(({ icon: Icon, title, desc }) => (
-              <li key={title} className="flex gap-4 p-5 rounded-[8px] border border-navy/8 bg-white">
-                <div className="shrink-0 flex items-start justify-center w-9 h-9 rounded-md bg-primary/8 text-primary">
-                  <Icon size={18} className="mt-1.5" aria-hidden="true" />
+          {/* Right: Pillar list — no cards, clean typography */}
+          <div className="flex-1 flex flex-col">
+            {PILLARS.map(({ title, desc }, i) => (
+              <div
+                key={title}
+                className="flex gap-6 py-8"
+                style={{
+                  borderBottom: i < PILLARS.length - 1
+                    ? "1px solid rgba(7,26,61,0.08)"
+                    : "none",
+                }}
+              >
+                {/* Index */}
+                <span
+                  className="text-[13px] font-semibold leading-none shrink-0 mt-0.5"
+                  style={{ color: "#0066FF", width: "28px" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* Content */}
+                <div className="flex flex-col gap-1.5">
+                  <h3
+                    className="font-bold leading-tight"
+                    style={{ fontSize: "17px", color: "#071A3D", letterSpacing: "-0.01em" }}
+                  >
+                    {title}
+                  </h3>
+                  <p
+                    className="text-[14px] leading-relaxed"
+                    style={{ color: "#334155", opacity: 0.7 }}
+                  >
+                    {desc}
+                  </p>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <h3 className="text-base font-semibold text-navy">{title}</h3>
-                  <p className="text-sm text-navy/60 leading-relaxed">{desc}</p>
-                </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
+
         </div>
       </Container>
     </section>

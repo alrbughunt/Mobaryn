@@ -1,23 +1,32 @@
 /* =============================================================
-   Mobaryn Design Tokens — Tailwind CSS v4 (@theme directive)
+   Mobaryn Design Tokens — v2 Premium Redesign
+   Brand palette: Navy #071A3D · Blue #0066FF · Surface #F5F7FA
    ============================================================= */
 
 @theme {
-  /* --- Colors --- */
-  --color-primary: #0B5ED7;
-  --color-navy:    #0F172A;
+  /* --- Brand Colors --- */
+  --color-navy:    #071A3D;
+  --color-blue:    #0066FF;
+  --color-surface: #F5F7FA;
   --color-white:   #FFFFFF;
-  --color-surface: #F5F8FC;
+  --color-body:    #334155;
+
+  /* Legacy alias so old references don't break */
+  --color-primary: #0066FF;
 
   /* --- Typography --- */
-  --font-sans: 'Switzer', -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
 
   /* --- Layout --- */
   --container-max: 1200px;
-  --text-max:      680px;
+  --text-max:      640px;
 
-  /* --- Border radius --- */
-  --radius-btn:   6px;
-  --radius-card:  8px;
-  --radius-hero:  4px;
+  /* --- Border Radius --- */
+  --radius-btn:    4px;
+  --radius-card:   6px;
+  --radius-hero:   2px;
+
+  /* --- Spacing scale --- */
+  --space-section:     96px;
+  --space-section-sm:  64px;
 }

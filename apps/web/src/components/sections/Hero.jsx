@@ -1,63 +1,91 @@
 import { useEffect, useRef } from "react"
-import { Link } from "react-router-dom"
 import Container from "../layout/Container"
 import WhatsAppButton from "../whatsapp/WhatsAppButton"
 import Button from "../ui/Button"
 
 export default function Hero() {
-  const heroRef = useRef(null)
+  const textRef = useRef(null)
+  const bgRef = useRef(null)
 
-  // Fade + slide-up reveal on mount — only animation on the homepage
   useEffect(() => {
-    const el = heroRef.current
-    if (!el) return
-    el.style.opacity = "0"
-    el.style.transform = "translateY(24px)"
+    const text = textRef.current
+    const bg = bgRef.current
+    if (!text || !bg) return
+
+    text.style.opacity = "0"
+    text.style.transform = "translateY(32px)"
+    bg.style.opacity = "0"
+
     const raf = requestAnimationFrame(() => {
-      el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
-      el.style.opacity = "1"
-      el.style.transform = "translateY(0)"
+      setTimeout(() => {
+        text.style.transition = "opacity 0.7s ease, transform 0.7s ease"
+        text.style.opacity = "1"
+        text.style.transform = "translateY(0)"
+      }, 60)
+      setTimeout(() => {
+        bg.style.transition = "opacity 0.9s ease"
+        bg.style.opacity = "1"
+      }, 0)
     })
     return () => cancelAnimationFrame(raf)
   }, [])
 
   return (
-    <section className="bg-surface py-16 sm:py-24 border-b border-navy/8">
-      <Container>
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+    <section className="relative overflow-hidden min-h-[560px] lg:min-h-[660px] flex items-center">
+      {/* Background: foto full-bleed + gradient overlay */}
+      <div ref={bgRef} className="absolute inset-0">
+        {/*
+          Ganti src di bawah dengan URL foto asli teknisi Mobaryn.
+          Rekomendasi: foto mekanik sedang bekerja pada kendaraan,
+          landscape, resolusi cukup besar (min. 1600px lebar) karena
+          ini jadi background penuh, bukan kotak kecil lagi.
+        */}
+        <img
+          src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80"
+          alt="Teknisi Mobaryn melakukan servis kendaraan di lokasi pelanggan"
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        {/* Gradient: gelap di kiri (tempat teks) -> transparan di kanan */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(7,26,61,0.93) 0%, rgba(7,26,61,0.80) 32%, rgba(7,26,61,0.35) 60%, rgba(7,26,61,0.05) 85%)",
+          }}
+        />
+      </div>
 
-          {/* Text block */}
-          <div ref={heroRef} className="flex-1 flex flex-col gap-6 text-center lg:text-left">
-            <h1
-              className="font-semibold text-navy leading-tight"
-              style={{ fontSize: "clamp(34px, 5vw, 52px)" }}
-            >
-              Mekanik datang ke lokasi Anda — tanpa perlu ke bengkel.
-            </h1>
-            <p className="text-lg text-navy/60 leading-relaxed" style={{ maxWidth: "var(--text-max)" }}>
-              Pesan layanan servis mobil langsung via WhatsApp, dan tim kami akan tiba di tempat Anda.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <WhatsAppButton />
-              <Button variant="secondary" href="/layanan" as={Link}>
-                Lihat Layanan
-              </Button>
-            </div>
-          </div>
+      {/* Content */}
+      <Container className="relative z-10">
+        <div ref={textRef} className="max-w-xl flex flex-col gap-7 py-20 lg:py-0">
+          <p
+            className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: "#4D94FF" }}
+          >
+            Bengkel Panggilan Cikarang
+          </p>
 
-          {/* Visual placeholder */}
-          <div className="flex-1 w-full max-w-md lg:max-w-none">
-            <div
-              className="w-full rounded-[4px] border border-navy/8 bg-white flex items-center justify-center text-navy/30 text-sm font-medium"
-              style={{ aspectRatio: "16/9" }}
-              aria-label="Area visual utama — placeholder"
-              role="img"
-            >
-              {/* TODO: ganti dengan foto/ilustrasi hero asli */}
-              Visual Hero — Placeholder
-            </div>
-          </div>
+          <h1
+            className="font-extrabold"
+            style={{
+              fontSize: "clamp(40px, 5.5vw, 68px)",
+              color: "#FFFFFF",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+            }}
+          >
+            Servis Mobil<br />
+            Datang Ke Lokasi Anda
+          </h1>
 
+          <p
+            className="text-[17px] leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.85)", maxWidth: "440px" }}
+          >
+            Perawatan dan perbaikan mobil tanpa perlu antre di bengkel.
+            Teknisi Mobaryn siap datang langsung ke lokasi Anda di Cikarang.
+          </p>
         </div>
       </Container>
     </section>
